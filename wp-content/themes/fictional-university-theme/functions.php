@@ -17,3 +17,27 @@ function uni_features() {
 }
 add_action('after_setup_theme', 'uni_features');
 
+
+function uni_modifyQueries($query) {
+
+    $today = date(format: 'Ymd');
+
+    if(!is_admin() AND is_post_type_archive("events") AND $query->is_main_query()) {
+        $query->set('meta_key', 'event_date');
+        $query->set('orderBy', 'meta_value_num');
+        $query->set('order', 'ASC');
+        $query->set('meta_query', array(
+            array(
+              'key' => 'event_date',
+              'compare' => '>=',
+              'value' => $today,
+              'type' => 'numberic'
+                )
+          )
+        );
+
+
+    }
+}
+
+add_action("pre_get_posts", 'uni_modifyQueries');

@@ -24,7 +24,7 @@
               ><a href="<?php echo site_url('/about-us') ?>">About Us</a></li>
               <li><a href="#">Programs</a></li>
               <li
-              <?php if(get_post_type() == 'events') echo 'class="current-menu-item"'; ?>
+              <?php if(get_post_type() == 'events'  OR is_page('past-events')) echo 'class="current-menu-item"'; ?>
               ><a href="<?php echo site_url('/events') ?>">Events</a></li>
               <li><a href="#">Campuses</a></li>
               <li
